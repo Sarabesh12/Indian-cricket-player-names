@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void insert_record ();
+void display_record ();
+
+char b;
+char name[100];
+int age;
+char role[50];
+int runs;
+int wickets;
+FILE *c;
+void main ()
+{
+int ch;
+do{
+    printf ("\t\t\t  ____________________________________\n");
+    printf ("\t\t WELCOME TO THE INDIAN CRICKET TEAM\n");
+    printf ("\t\t____________________________________\n\n\n\n");
+    printf ("\t\tAvailable functions\n");
+    printf ("1. Insert player record\n");
+    printf ("2. Display player record\n");
+    printf ("3. Exit\n");
+    printf ("\t Enter your choice : \n");
+    scanf ("%d", &ch);
+    switch (ch)
+        {
+        case 1:
+        insert_record ();
+        break;
+        case 2:
+        display_record ();
+        break;
+        case 3:
+          break;
+        default:
+        printf ("\t Invalid Selection");
+        }
+
+}while(ch!=3);
+}
+
+
+void insert_record ()
+{
+
+c= fopen ("cric.txt", "a");
+
+printf ("\t********* Enter New player data**************");
+printf ("\n\t\t Enter player Name");
+scanf ("%s", name);
+fflush (stdin);
+printf ("\n\t\t Enter player age");
+scanf ("%d", &age);
+printf ("\n\t\t Enter player role");
+scanf ("%s", role);
+printf ("\n\t\t Enter runs secured by the player");
+scanf ("%d", &runs);
+printf ("\n\t\t Enter wickets taken by the player");
+scanf ("%d", &wickets);
+fprintf(c, "%s%d%s%d%d",name,age,role,runs,wickets);
+
+
+
+
+printf ("\n\n\t !!!! Player record added succesfully\n");
+
+fclose (c);
+
+}
+
+
+void display_record ()
+{
+
+c = fopen ("cric.txt", "r");
+
+
+
+printf ("\n\n\t Player detials are as follows\n\n");
+printf ("\n NAME\t\t AGE\t ROLE\t\t RUNS\t WICKETS\n\n");
+while (b!=EOF)
+{
+    b=fscanf("%s\t %d\t %c\t %d\t %d\n",name,&age,role,&runs,&wickets);
+    printf ("%c",b);
+    fclose (c);
+}
+}
